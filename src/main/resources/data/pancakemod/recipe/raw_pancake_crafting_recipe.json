@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "pancakemod:pancake_batter_bucket"
+        }
+    ],
+    "result": {
+        "id": "pancakemod:raw_pancake",
+        "count": 8
+    }
+}

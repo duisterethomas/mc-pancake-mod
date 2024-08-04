@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "P"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cocoa_beans"
+        },
+        "P": {
+            "item": "pancakemod:baked_pancake"
+        }
+    },
+    "result": {
+        "id": "pancakemod:baked_pancake_chocolate",
+        "count": 1
+    }
+}

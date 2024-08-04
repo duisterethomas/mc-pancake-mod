@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "P"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:sugar"
+        },
+        "P": {
+            "item": "pancakemod:baked_pancake"
+        }
+    },
+    "result": {
+        "id": "pancakemod:baked_pancake_sugar",
+        "count": 1
+    }
+}

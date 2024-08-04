@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "pancakemod",
+	"version": "${version}",
+	"name": "Pancake Mod",
+	"description": "This mods simply adds Pancakes to the game!",
+	"authors": [
+		"Duisterethomas"
+	],
+	"contact": {
+		"homepage": "https://duisterethomas.nl/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pancakemod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"nl.duisterethomas.pancakemod.PancakeMod"
+		],
+		"client": [
+			"nl.duisterethomas.pancakemod.PancakeModClient"
+		]
+	},
+	"mixins": [
+		"pancakemod.mixins.json",
+		{
+			"config": "pancake-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+	}
+}

@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "P"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:cooked_porkchop"
+        },
+        "P": {
+            "item": "pancakemod:baked_pancake"
+        }
+    },
+    "result": {
+        "id": "pancakemod:baked_pancake_bacon",
+        "count": 1
+    }
+}
