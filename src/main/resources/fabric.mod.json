@@ -11,7 +11,7 @@
 		"homepage": "https://duisterethomas.nl/",
 		"sources": "https://github.com/duisterethomas/mc-pancake-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/pancakemod/icon.png",
 	"environment": "*",
 	"entrypoints": {
