@@ -3,12 +3,16 @@
 	"id": "pancakemod",
 	"version": "${version}",
 	"name": "Pancake Mod",
-	"description": "This mods simply adds Pancakes to the game!",
+	"description": "This mods simply adds Dutch Pancakes to the game!",
 	"authors": [
-		"Duisterethomas"
+		{
+			"name": "Duisterethomas",
+			"homepage": "https://www.duisterethomas.nl/"
+		}
 	],
 	"contact": {
-		"homepage": "https://duisterethomas.nl/",
+		"homepage": "https://modrinth.com/project/pancakemod",
+		"issues": "https://github.com/duisterethomas/mc-pancake-mod/issues",
 		"sources": "https://github.com/duisterethomas/mc-pancake-mod"
 	},
 	"license": "MIT",
