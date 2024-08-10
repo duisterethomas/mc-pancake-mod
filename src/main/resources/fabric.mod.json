@@ -26,13 +26,7 @@
 			"nl.duisterethomas.pancakemod.PancakeModClient"
 		]
 	},
-	"mixins": [
-		"pancakemod.mixins.json",
-		{
-			"config": "pancake-mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
+	"mixins": [],
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.21",
