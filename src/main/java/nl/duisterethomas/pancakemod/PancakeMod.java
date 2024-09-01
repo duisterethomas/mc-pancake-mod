@@ -3,6 +3,7 @@ package nl.duisterethomas.pancakemod;
 import net.fabricmc.api.ModInitializer;
 
 import nl.duisterethomas.pancakemod.registry.ModItems;
+import nl.duisterethomas.pancakemod.registry.ModBlocks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,5 +22,7 @@ public class PancakeMod implements ModInitializer {
 
 		LOGGER.info("Initializing mod items");
 		ModItems.initialize();
+		LOGGER.info("Initializing mod blocks");
+		ModBlocks.initialize();
 	}
 }

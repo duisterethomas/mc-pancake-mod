@@ -1,0 +1,52 @@
+{
+	"variants": {
+		"pancake_count=1": {
+			"model": "pancakemod:block/pancake_stack_1"
+		},
+		"pancake_count=2": {
+			"model": "pancakemod:block/pancake_stack_2"
+		},
+		"pancake_count=3": {
+			"model": "pancakemod:block/pancake_stack_3"
+		},
+		"pancake_count=4": {
+			"model": "pancakemod:block/pancake_stack_4"
+		},
+		"pancake_count=5": {
+			"model": "pancakemod:block/pancake_stack_5"
+		},
+		"pancake_count=6": {
+			"model": "pancakemod:block/pancake_stack_6"
+		},
+		"pancake_count=7": {
+			"model": "pancakemod:block/pancake_stack_7"
+		},
+		"pancake_count=8": {
+			"model": "pancakemod:block/pancake_stack_8"
+		},
+		"pancake_count=9": {
+			"model": "pancakemod:block/pancake_stack_9"
+		},
+		"pancake_count=10": {
+			"model": "pancakemod:block/pancake_stack_10"
+		},
+		"pancake_count=11": {
+			"model": "pancakemod:block/pancake_stack_11"
+		},
+		"pancake_count=12": {
+			"model": "pancakemod:block/pancake_stack_12"
+		},
+		"pancake_count=13": {
+			"model": "pancakemod:block/pancake_stack_13"
+		},
+		"pancake_count=14": {
+			"model": "pancakemod:block/pancake_stack_14"
+		},
+		"pancake_count=15": {
+			"model": "pancakemod:block/pancake_stack_15"
+		},
+		"pancake_count=16": {
+			"model": "pancakemod:block/pancake_stack_16"
+		}
+	}
+}
