@@ -1,9 +1,8 @@
 package nl.duisterethomas.pancakemod.blocks;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -13,15 +12,30 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
-public class PancakeStackBlock extends Block {
+public class PancakeStackBlock extends BlockWithEntity {
     public static final IntProperty PANCAKE_COUNT = IntProperty.of("pancake_count", 1, 16);
 
-    public PancakeStackBlock() {
-        super(AbstractBlock.Settings.create()
-                .sounds(BlockSoundGroup.WOOL)
-                .pistonBehavior(PistonBehavior.DESTROY));
+    public PancakeStackBlock(Settings settings) {
+        super(settings);
 
         setDefaultState(getDefaultState().with(PANCAKE_COUNT, 1));
+    }
+
+    @Override
+    protected MapCodec<? extends PancakeStackBlock> getCodec() {
+        return createCodec(PancakeStackBlock::new);
+    }
+
+    // Runs when a new block is places
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new PancakeStackBlockEntity(pos, state);
+    }
+
+    // Make sure it renders the model
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -29,6 +43,7 @@ public class PancakeStackBlock extends Block {
         builder.add(PANCAKE_COUNT);
     }
 
+    // Provide the collision and outline shape
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context){
 
