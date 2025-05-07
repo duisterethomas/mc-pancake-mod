@@ -63,6 +63,13 @@ public class BakedPancakeItem extends Item {
                 return TypedActionResult.success(heldStack);
             }
 
+            // Return the remaining 16 rolled pancakes
+            if (heldStack.getCount() == 16) {
+                rolledPancakeStack.setCount(heldStack.getCount());
+
+                return TypedActionResult.success(rolledPancakeStack);
+            }
+
         }
 
         return TypedActionResult.success(heldStack);
