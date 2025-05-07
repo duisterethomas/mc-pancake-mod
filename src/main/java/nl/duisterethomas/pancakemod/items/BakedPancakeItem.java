@@ -49,12 +49,6 @@ public class BakedPancakeItem extends Item {
 
         // Roll the pancakes
         for (int i = requiredRolledPancakeCount; i > 0; i--) {
-            // If only 16 pancakes left return the rolled pancake stack
-            if (heldStack.getCount() == 16) {
-                rolledPancakeStack.setCount(16);
-                return TypedActionResult.success(rolledPancakeStack);
-            }
-
             // Get the current amount of rolled pancakes
             rolledPancakeCount = player.getInventory().count(rolledVariant);
 
