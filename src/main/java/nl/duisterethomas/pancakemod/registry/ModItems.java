@@ -45,6 +45,10 @@ public class ModItems {
                 .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_BACON));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
                 .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_BACON));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
+                .register((itemGroup) -> itemGroup.add(GOLDEN_BAKED_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
+                .register((itemGroup) -> itemGroup.add(GOLDEN_ROLLED_PANCAKE));
     }
 
     public static Item register(Item item, String id) {
@@ -161,5 +165,20 @@ public class ModItems {
     public static final BakedPancakeItem BAKED_PANCAKE_BACON = (BakedPancakeItem) register(
             new BakedPancakeItem(ROLLED_PANCAKE_BACON),
             "baked_pancake_bacon"
+    );
+
+    public static final Item GOLDEN_ROLLED_PANCAKE = register(
+            new Item(new Item.Settings()
+                    .maxCount(16)
+                    .food(new FoodComponent.Builder()
+                            .nutrition(8)
+                            .saturationModifier(1.0f)
+                            .build())),
+            "golden_rolled_pancake"
+    );
+
+    public static final BakedPancakeItem GOLDEN_BAKED_PANCAKE = (BakedPancakeItem) register(
+            new BakedPancakeItem(GOLDEN_ROLLED_PANCAKE),
+            "golden_baked_pancake"
     );
 }
