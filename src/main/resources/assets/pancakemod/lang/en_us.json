@@ -14,5 +14,7 @@
   "item.pancakemod.baked_pancake_bacon": "Baked Pancake with Bacon",
   "item.pancakemod.rolled_pancake_bacon": "Rolled Pancake with Bacon",
   "item.pancakemod.golden_baked_pancake": "Golden Baked Pancake",
-  "item.pancakemod.golden_rolled_pancake": "Golden Rolled Pancake"
+  "item.pancakemod.golden_rolled_pancake": "Golden Rolled Pancake",
+  "item.pancakemod.baked_pancake.tooltip_1": "§8[§7Use§8] to roll a pancake",
+  "item.pancakemod.baked_pancake.tooltip_2": "§8[§7Sneak + Use§8] to roll all pancakes"
 }

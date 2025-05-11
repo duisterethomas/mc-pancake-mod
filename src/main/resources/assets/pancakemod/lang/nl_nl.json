@@ -14,5 +14,7 @@
   "item.pancakemod.baked_pancake_bacon": "Gebakken Pannenkoek met Spek",
   "item.pancakemod.rolled_pancake_bacon": "Opgerolde Pannenkoek met Spek",
   "item.pancakemod.golden_baked_pancake": "Gouden Gebakken Pannenkoek",
-  "item.pancakemod.golden_rolled_pancake": "Gouden Opgerolde Pannenkoek"
+  "item.pancakemod.golden_rolled_pancake": "Gouden Opgerolde Pannenkoek",
+  "item.pancakemod.baked_pancake.tooltip_1": "§8[§7Use§8] om een pannenkoek op te rollen",
+  "item.pancakemod.baked_pancake.tooltip_2": "§8[§7Sneak + Use§8] om alle pannenkoeken op te rollen"
 }

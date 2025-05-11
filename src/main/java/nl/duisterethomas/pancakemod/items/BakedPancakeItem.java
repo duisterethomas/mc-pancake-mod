@@ -3,9 +3,13 @@ package nl.duisterethomas.pancakemod.items;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class BakedPancakeItem extends Item {
     private final Item rolledVariant;
@@ -13,6 +17,13 @@ public class BakedPancakeItem extends Item {
     public BakedPancakeItem(Item rolledVariant) {
         super(new Item.Settings());
         this.rolledVariant = rolledVariant;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+
+        tooltip.add(Text.translatable("item.pancakemod.baked_pancake.tooltip_1"));
+        tooltip.add(Text.translatable("item.pancakemod.baked_pancake.tooltip_2"));
     }
 
     @Override
