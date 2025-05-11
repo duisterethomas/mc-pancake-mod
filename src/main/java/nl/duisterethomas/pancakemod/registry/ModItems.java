@@ -69,7 +69,7 @@ public class ModItems {
     public static final Item RAW_PANCAKE = register(
             new Item(new Item.Settings()
                     .food(new FoodComponent.Builder()
-                            .nutrition(2)
+                            .nutrition(1)
                             .saturationModifier(0.25f)
                             // The duration is in ticks, 20 ticks = 1 second
                             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400, 1), 0.5f)
@@ -81,7 +81,7 @@ public class ModItems {
             new Item(new Item.Settings()
                     .maxCount(16)
                     .food(new FoodComponent.Builder()
-                            .nutrition(6)
+                            .nutrition(4)
                             .saturationModifier(1.0f)
                             .build())),
             "rolled_pancake"
@@ -96,7 +96,7 @@ public class ModItems {
             new Item(new Item.Settings()
                     .maxCount(16)
                     .food(new FoodComponent.Builder()
-                            .nutrition(7)
+                            .nutrition(6)
                             .saturationModifier(1.0f)
                             .build())),
             "rolled_pancake_sugar"
@@ -111,7 +111,7 @@ public class ModItems {
             new Item(new Item.Settings()
                     .maxCount(16)
                     .food(new FoodComponent.Builder()
-                            .nutrition(9)
+                            .nutrition(10)
                             .saturationModifier(1.0f)
                             .build())),
             "rolled_pancake_honey"
@@ -141,7 +141,7 @@ public class ModItems {
             new Item(new Item.Settings()
                     .maxCount(16)
                     .food(new FoodComponent.Builder()
-                            .nutrition(10)
+                            .nutrition(8)
                             .saturationModifier(1.0f)
                             .build())),
             "rolled_pancake_apple"
