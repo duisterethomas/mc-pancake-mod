@@ -1,10 +1,20 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "pancakemod:pancake_batter_bucket"
-        }
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#W#",
+        " M "
     ],
+    "key": {
+        "#": {
+            "item": "minecraft:egg"
+        },
+        "W": {
+            "item": "minecraft:wheat"
+        },
+        "M": {
+            "item": "minecraft:milk_bucket"
+        }
+    },
     "result": {
         "id": "pancakemod:raw_pancake",
         "count": 8

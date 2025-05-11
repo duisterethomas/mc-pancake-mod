@@ -12,13 +12,9 @@ import net.minecraft.util.Identifier;
 import nl.duisterethomas.pancakemod.PancakeMod;
 import nl.duisterethomas.pancakemod.items.BakedPancakeItem;
 
-import static net.minecraft.item.Items.BUCKET;
-
 public class ModItems {
     public static void initialize() {
         // Add all the items to the right item groups
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
-                .register((itemGroup) -> itemGroup.add(PANCAKE_BATTER_BUCKET));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
                 .register((itemGroup) -> itemGroup.add(RAW_PANCAKE));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
@@ -58,13 +54,6 @@ public class ModItems {
         // Register and return the item
         return Registry.register(Registries.ITEM, itemID, item);
     }
-
-    public static final Item PANCAKE_BATTER_BUCKET = register(
-            new Item(new Item.Settings()
-                    .recipeRemainder(BUCKET)
-                    .maxCount(1)),
-            "pancake_batter_bucket"
-    );
 
     public static final Item RAW_PANCAKE = register(
             new Item(new Item.Settings()
