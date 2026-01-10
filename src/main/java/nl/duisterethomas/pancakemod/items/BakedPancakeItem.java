@@ -43,16 +43,8 @@ public class BakedPancakeItem extends Item {
         ItemStack heldStack = player.getStackInHand(hand);
 
         if (player.isSneaking()) {
-            if (heldStack.getCount() <= 16) {
-                // Return pancake stack immediately when player is sneaking and has 16 or less baked pancakes
-                rolledPancakeStack.setCount(heldStack.getCount());
-
-                return TypedActionResult.success(rolledPancakeStack);
-            }
-
-            // Set the required rolled amount
+            // Set the required amount of rolled pancakes
             requiredRolledPancakeCount = heldStack.getCount();
-
         } else if (heldStack.getCount() == 1) {
             // Return rolled pancake immediately when player holds only one pancake
             return TypedActionResult.success(rolledPancakeStack);
@@ -60,6 +52,13 @@ public class BakedPancakeItem extends Item {
 
         // Roll the pancakes
         for (int i = requiredRolledPancakeCount; i > 0; i--) {
+            // Return the remaining rolled pancakes if there are 16 or less left and the player is sneaking
+            if (heldStack.getCount() <= 16 && player.isSneaking()) {
+                rolledPancakeStack.setCount(heldStack.getCount());
+
+                return TypedActionResult.success(rolledPancakeStack);
+            }
+
             // Get the current amount of rolled pancakes
             rolledPancakeCount = player.getInventory().count(rolledVariant);
 
@@ -72,13 +71,6 @@ public class BakedPancakeItem extends Item {
                 return TypedActionResult.pass(heldStack);
             } else {
                 return TypedActionResult.success(heldStack);
-            }
-
-            // Return the remaining 16 rolled pancakes
-            if (heldStack.getCount() == 16) {
-                rolledPancakeStack.setCount(heldStack.getCount());
-
-                return TypedActionResult.success(rolledPancakeStack);
             }
 
         }
