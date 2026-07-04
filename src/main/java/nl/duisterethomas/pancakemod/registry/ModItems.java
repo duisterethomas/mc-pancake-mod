@@ -1,75 +1,75 @@
 package nl.duisterethomas.pancakemod.registry;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import nl.duisterethomas.pancakemod.PancakeMod;
 import nl.duisterethomas.pancakemod.items.BakedPancakeItem;
 
 public class ModItems {
     public static void initialize() {
         // Add all the items to the right item groups
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(RAW_PANCAKE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_SUGAR));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_SUGAR));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_HONEY));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_HONEY));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_CHOCOLATE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_CHOCOLATE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_APPLE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_APPLE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(BAKED_PANCAKE_BACON));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(ROLLED_PANCAKE_BACON));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(GOLDEN_BAKED_PANCAKE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(GOLDEN_ROLLED_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(RAW_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE_SUGAR));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE_SUGAR));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE_HONEY));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE_HONEY));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE_CHOCOLATE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE_CHOCOLATE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE_APPLE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE_APPLE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(BAKED_PANCAKE_BACON));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(ROLLED_PANCAKE_BACON));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(GOLDEN_BAKED_PANCAKE));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FOOD_AND_DRINKS)
+                .register((itemGroup) -> itemGroup.accept(GOLDEN_ROLLED_PANCAKE));
     }
 
     public static Item register(Item item, String id) {
         // Create the identifier for the item
-        Identifier itemID = Identifier.of(PancakeMod.MOD_ID, id);
+        ResourceLocation itemID = ResourceLocation.fromNamespaceAndPath(PancakeMod.MOD_ID, id);
 
         // Register and return the item
-        return Registry.register(Registries.ITEM, itemID, item);
+        return Registry.register(BuiltInRegistries.ITEM, itemID, item);
     }
 
     public static final Item RAW_PANCAKE = register(
-            new Item(new Item.Settings()
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .food(new FoodProperties.Builder()
                             .nutrition(1)
                             .saturationModifier(0.25f)
                             // The duration is in ticks, 20 ticks = 1 second
-                            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 400, 1), 0.5f)
+                            .effect(new MobEffectInstance(MobEffects.HUNGER, 400, 1), 0.5f)
                             .build())),
             "raw_pancake"
     );
 
     public static final Item ROLLED_PANCAKE = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(4)
                             .saturationModifier(1.0f)
                             .build())),
@@ -82,9 +82,9 @@ public class ModItems {
     );
 
     public static final Item ROLLED_PANCAKE_SUGAR = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(6)
                             .saturationModifier(1.0f)
                             .build())),
@@ -97,9 +97,9 @@ public class ModItems {
     );
 
     public static final Item ROLLED_PANCAKE_HONEY = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(10)
                             .saturationModifier(1.0f)
                             .build())),
@@ -112,9 +112,9 @@ public class ModItems {
     );
 
     public static final Item ROLLED_PANCAKE_CHOCOLATE = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(8)
                             .saturationModifier(1.0f)
                             .build())),
@@ -127,9 +127,9 @@ public class ModItems {
     );
 
     public static final Item ROLLED_PANCAKE_APPLE = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(8)
                             .saturationModifier(1.0f)
                             .build())),
@@ -142,9 +142,9 @@ public class ModItems {
     );
 
     public static final Item ROLLED_PANCAKE_BACON = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(14)
                             .saturationModifier(1.0f)
                             .build())),
@@ -157,9 +157,9 @@ public class ModItems {
     );
 
     public static final Item GOLDEN_ROLLED_PANCAKE = register(
-            new Item(new Item.Settings()
-                    .maxCount(16)
-                    .food(new FoodComponent.Builder()
+            new Item(new Item.Properties()
+                    .stacksTo(16)
+                    .food(new FoodProperties.Builder()
                             .nutrition(8)
                             .saturationModifier(1.0f)
                             .build())),
