@@ -3,7 +3,7 @@ package nl.duisterethomas.pancakemod.items;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,8 +13,8 @@ import net.minecraft.world.level.Level;
 public class BakedPancakeItem extends Item {
     private final Item rolledVariant;
 
-    public BakedPancakeItem(Item rolledVariant) {
-        super(new Item.Properties());
+    public BakedPancakeItem(Item.Properties properties, Item rolledVariant) {
+        super(properties);
         this.rolledVariant = rolledVariant;
     }
 
@@ -26,11 +26,11 @@ public class BakedPancakeItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResult use(Level world, Player player, InteractionHand hand) {
         // Ensure we don't roll a pancake only on the client.
         // This is to prevent desync.
         if (world.isClientSide) {
-            return InteractionResultHolder.pass(player.getItemInHand(hand));
+            return InteractionResult.PASS;
         }
 
         // Create a new item stack, requiredRolledPancakeCount and rolledPancakeCount
@@ -46,7 +46,7 @@ public class BakedPancakeItem extends Item {
             requiredRolledPancakeCount = heldStack.getCount();
         } else if (heldStack.getCount() == 1) {
             // Return rolled pancake immediately when player holds only one pancake
-            return InteractionResultHolder.success(rolledPancakeStack);
+            return InteractionResult.SUCCESS.heldItemTransformedTo(rolledPancakeStack);
         }
 
         // Roll the pancakes
@@ -55,7 +55,7 @@ public class BakedPancakeItem extends Item {
             if (heldStack.getCount() <= 16 && player.isShiftKeyDown()) {
                 rolledPancakeStack.setCount(heldStack.getCount());
 
-                return InteractionResultHolder.success(rolledPancakeStack);
+                return InteractionResult.SUCCESS.heldItemTransformedTo(rolledPancakeStack);
             }
 
             // Get the current amount of rolled pancakes
@@ -66,14 +66,12 @@ public class BakedPancakeItem extends Item {
 
             if (rolledPancakeCount < player.getInventory().countItem(rolledVariant)) {
                 heldStack.shrink(1);
-            } else if (i == requiredRolledPancakeCount) {
-                return InteractionResultHolder.pass(heldStack);
             } else {
-                return InteractionResultHolder.success(heldStack);
+                return InteractionResult.SUCCESS.heldItemTransformedTo(heldStack);
             }
 
         }
 
-        return InteractionResultHolder.success(heldStack);
+        return InteractionResult.SUCCESS.heldItemTransformedTo(heldStack);
     }
 }

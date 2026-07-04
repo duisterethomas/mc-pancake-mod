@@ -6,12 +6,8 @@
         "###"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:gold_nugget"
-        },
-        "P": {
-            "item": "pancakemod:baked_pancake"
-        }
+        "#": "minecraft:gold_nugget",
+        "P": "pancakemod:baked_pancake"
     },
     "result": {
         "id": "pancakemod:golden_baked_pancake",

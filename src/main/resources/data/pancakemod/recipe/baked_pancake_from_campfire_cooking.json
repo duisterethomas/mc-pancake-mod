@@ -1,12 +1,9 @@
 {
   "type": "minecraft:campfire_cooking",
-  "category": "food",
-  "cookingtime": 100,
-  "experience": 0.1,
-  "ingredient": {
-    "item": "pancakemod:raw_pancake"
-  },
+  "ingredient": "pancakemod:raw_pancake",
   "result": {
     "id": "pancakemod:baked_pancake"
-  }
+  },
+  "experience": 0.1,
+  "cookingtime": 100
 }

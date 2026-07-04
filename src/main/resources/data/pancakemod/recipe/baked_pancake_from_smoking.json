@@ -1,8 +1,7 @@
 {
   "type": "minecraft:smoking",
-  "ingredient": {
-    "item": "pancakemod:raw_pancake"
-  },
+  "category": "food",
+  "ingredient": "pancakemod:raw_pancake",
   "result": {
     "id": "pancakemod:baked_pancake"
   },

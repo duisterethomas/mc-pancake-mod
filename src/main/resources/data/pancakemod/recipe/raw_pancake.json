@@ -5,15 +5,9 @@
         " M "
     ],
     "key": {
-        "#": {
-            "item": "minecraft:egg"
-        },
-        "W": {
-            "item": "minecraft:wheat"
-        },
-        "M": {
-            "item": "minecraft:milk_bucket"
-        }
+        "#": "minecraft:egg",
+        "W": "minecraft:wheat",
+        "M": "minecraft:milk_bucket"
     },
     "result": {
         "id": "pancakemod:raw_pancake",

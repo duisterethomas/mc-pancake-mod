@@ -5,12 +5,8 @@
         "P"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:apple"
-        },
-        "P": {
-            "item": "pancakemod:baked_pancake"
-        }
+        "#": "minecraft:apple",
+        "P": "pancakemod:baked_pancake"
     },
     "result": {
         "id": "pancakemod:baked_pancake_apple",
