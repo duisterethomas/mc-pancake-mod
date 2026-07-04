@@ -1,6 +1,7 @@
 package nl.duisterethomas.pancakemod.items;
 
-import java.util.List;
+import java.util.function.Consumer;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -8,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
 public class BakedPancakeItem extends Item {
@@ -18,10 +20,12 @@ public class BakedPancakeItem extends Item {
         this.rolledVariant = rolledVariant;
     }
 
+    // Yes this method is officially deprecated, but it still works
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(Component.translatable("item.pancakemod.baked_pancake.tooltip_1"));
-        tooltip.add(Component.translatable("item.pancakemod.baked_pancake.tooltip_2"));
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
+        consumer.accept(Component.translatable("item.pancakemod.baked_pancake.tooltip_1"));
+        consumer.accept(Component.translatable("item.pancakemod.baked_pancake.tooltip_2"));
     }
 
     @Override
