@@ -20,16 +20,15 @@ public class BakedPancakeItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-
         tooltip.add(Component.translatable("item.pancakemod.baked_pancake.tooltip_1"));
         tooltip.add(Component.translatable("item.pancakemod.baked_pancake.tooltip_2"));
     }
 
     @Override
-    public InteractionResult use(Level world, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         // Ensure we don't roll a pancake only on the client.
         // This is to prevent desync.
-        if (world.isClientSide) {
+        if (level.isClientSide()) {
             return InteractionResult.PASS;
         }
 
