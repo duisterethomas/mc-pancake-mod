@@ -13,7 +13,9 @@
         },
         "has_the_recipe": {
             "conditions": {
-                "recipe": "pancakemod:golden_baked_pancake"
+                "recipes": [
+                    "pancakemod:golden_baked_pancake"
+                ]
             },
             "trigger": "minecraft:recipe_unlocked"
         }

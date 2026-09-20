@@ -7,7 +7,7 @@
 	"authors": [
 		{
 			"name": "Duisterethomas",
-			"homepage": "https://www.duisterethomas.nl/"
+			"homepage": "https://duisterethomas.nl/"
 		}
 	],
 	"contact": {
@@ -28,7 +28,7 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.18.4",
-		"minecraft": ">=26.1 <=26.2",
+		"minecraft": ">=26.3",
 		"java": ">=25",
 		"fabric-api": "*"
 	}

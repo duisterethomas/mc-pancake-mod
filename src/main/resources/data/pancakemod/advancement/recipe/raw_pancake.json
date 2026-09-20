@@ -33,7 +33,9 @@
         },
         "has_the_recipe": {
             "conditions": {
-                "recipe": "pancakemod:raw_pancake"
+                "recipes": [
+                    "pancakemod:raw_pancake"
+                ]
             },
             "trigger": "minecraft:recipe_unlocked"
         }

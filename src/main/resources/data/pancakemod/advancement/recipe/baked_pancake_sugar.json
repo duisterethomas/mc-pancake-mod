@@ -13,7 +13,9 @@
         },
         "has_the_recipe": {
             "conditions": {
-                "recipe": "pancakemod:baked_pancake_sugar"
+                "recipes": [
+                    "pancakemod:baked_pancake_sugar"
+                ]
             },
             "trigger": "minecraft:recipe_unlocked"
         }

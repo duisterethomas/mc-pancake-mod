@@ -13,7 +13,9 @@
         },
         "has_the_recipe": {
             "conditions": {
-                "recipe": "pancakemod:baked_pancake_apple"
+                "recipes": [
+                    "pancakemod:baked_pancake_apple"
+                ]
             },
             "trigger": "minecraft:recipe_unlocked"
         }
