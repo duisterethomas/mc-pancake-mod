@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "pancakemod:block/pancake_stack" }
+    }
+}

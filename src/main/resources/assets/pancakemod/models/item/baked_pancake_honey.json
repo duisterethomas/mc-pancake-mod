@@ -1,6 +1,12 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "pancakemod:item/baked_pancake_honey"
-  }
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "pancakemod:item/baked_pancake_honey"
+    },
+    "overrides": [
+        {
+            "predicate": { "custom_model_data": 1 },
+            "model": "pancakemod:block/stacked_pancake_honey"
+        }
+    ]
 }

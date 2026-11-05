@@ -1,17 +1,28 @@
 package nl.duisterethomas.pancakemod.items;
 
 import java.util.List;
+
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import nl.duisterethomas.pancakemod.blocks.PancakeStackBlockEntity;
+
+import static nl.duisterethomas.pancakemod.registry.ModBlocks.PANCAKE_STACK;
 
 public class BakedPancakeItem extends Item {
-    private final Item rolledVariant;
+    public final Item rolledVariant;
 
     public BakedPancakeItem(Item rolledVariant) {
         super(new Item.Properties());
@@ -75,5 +86,49 @@ public class BakedPancakeItem extends Item {
         }
 
         return InteractionResultHolder.success(heldStack);
+    }
+
+    public static boolean canPlacePancakeStack(UseOnContext context) {
+        // Place a new stack if possible
+        BlockPlaceContext placeContext = new BlockPlaceContext(context);
+        if (!placeContext.canPlace()) {
+            return false;
+        }
+
+        BlockState state = PANCAKE_STACK.getStateForPlacement(placeContext);
+        if (state == null) {
+            return false;
+        }
+
+        Level level = context.getLevel();
+        BlockPos pos = placeContext.getClickedPos();
+        return state.canSurvive(level, pos) && level.isUnobstructed(state, pos, CollisionContext.of(context.getPlayer()));
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        if (!canPlacePancakeStack(context)) {
+            return InteractionResult.PASS;
+        }
+
+        BlockPlaceContext placeContext = new BlockPlaceContext(context);
+        BlockPos pos = placeContext.getClickedPos();
+        BlockState state = PANCAKE_STACK.getStateForPlacement(placeContext);
+        Level level = context.getLevel();
+
+        if (!level.isClientSide()) {
+            level.setBlockAndUpdate(pos, state);
+
+            if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity stack) {
+                stack.addPancake(context.getItemInHand().copyWithCount(1), context.getHorizontalDirection().getOpposite().get2DDataValue());
+            }
+
+            SoundType sound = state.getSoundType();
+            level.playSound(null, pos, sound.getPlaceSound(), SoundSource.BLOCKS, (sound.getVolume() + 1.0f) / 2.0f, sound.getPitch() * 0.8f);
+
+            context.getItemInHand().consume(1, context.getPlayer());
+        }
+
+        return InteractionResult.SUCCESS;
     }
 }
