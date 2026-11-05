@@ -1,0 +1,6 @@
+{
+    "parent": "pancakemod:block/stacked_pancake",
+    "textures": {
+        "layer0": "pancakemod:block/stacked_pancake_apple"
+    }
+}
