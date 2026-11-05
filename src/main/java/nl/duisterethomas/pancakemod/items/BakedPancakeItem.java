@@ -18,11 +18,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import nl.duisterethomas.pancakemod.blocks.PancakeStackBlockEntity;
 
 import static nl.duisterethomas.pancakemod.registry.ModBlocks.PANCAKE_STACK;
 
 public class BakedPancakeItem extends Item {
-    private final Item rolledVariant;
+    public final Item rolledVariant;
 
     public BakedPancakeItem(Item.Properties properties, Item rolledVariant) {
         super(properties);
@@ -87,34 +88,45 @@ public class BakedPancakeItem extends Item {
         return InteractionResult.SUCCESS.heldItemTransformedTo(heldStack);
     }
 
-    @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public static boolean canPlacePancakeStack(UseOnContext context) {
         // Place a new stack if possible
         BlockPlaceContext placeContext = new BlockPlaceContext(context);
         if (!placeContext.canPlace()) {
-            return InteractionResult.PASS;
+            return false;
         }
 
         BlockState state = PANCAKE_STACK.getStateForPlacement(placeContext);
         if (state == null) {
-            return InteractionResult.PASS;
+            return false;
         }
 
         Level level = context.getLevel();
         BlockPos pos = placeContext.getClickedPos();
-        Player player = context.getPlayer();
+        return state.canSurvive(level, pos) && level.isUnobstructed(state, pos, CollisionContext.placementContext(context.getPlayer()));
+    }
 
-        if (!state.canSurvive(level, pos) || !level.isUnobstructed(state, pos, CollisionContext.placementContext(player))) {
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        if (!canPlacePancakeStack(context)) {
             return InteractionResult.PASS;
         }
+
+        BlockPlaceContext placeContext = new BlockPlaceContext(context);
+        BlockPos pos = placeContext.getClickedPos();
+        BlockState state = PANCAKE_STACK.getStateForPlacement(placeContext);
+        Level level = context.getLevel();
 
         if (!level.isClientSide()) {
             level.setBlockAndUpdate(pos, state);
 
+            if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity stack) {
+                stack.addPancake(context.getItemInHand().copyWithCount(1));
+            }
+
             SoundType sound = state.getSoundType();
             level.playSound(null, pos, sound.getPlaceSound(), SoundSource.BLOCKS, (sound.getVolume() + 1.0f) / 2.0f, sound.getPitch() * 0.8f);
 
-            context.getItemInHand().consume(1, player);
+            context.getItemInHand().consume(1, context.getPlayer());
         }
 
         return InteractionResult.SUCCESS;
