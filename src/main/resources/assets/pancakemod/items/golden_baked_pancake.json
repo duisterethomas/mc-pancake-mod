@@ -1,6 +1,19 @@
 {
-  "model": {
-    "type": "minecraft:model",
-    "model": "pancakemod:item/golden_baked_pancake"
-  }
+    "model": {
+        "type": "minecraft:select",
+        "property": "minecraft:display_context",
+        "cases": [
+            {
+                "when": "none",
+                "model": {
+                    "type": "minecraft:model",
+                    "model": "pancakemod:block/golden_stacked_pancake"
+                }
+            }
+        ],
+        "fallback": {
+            "type": "minecraft:model",
+            "model": "pancakemod:item/golden_baked_pancake"
+        }
+    }
 }
