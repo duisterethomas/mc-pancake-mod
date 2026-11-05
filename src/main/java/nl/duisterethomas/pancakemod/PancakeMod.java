@@ -2,6 +2,7 @@ package nl.duisterethomas.pancakemod;
 
 import net.fabricmc.api.ModInitializer;
 
+import nl.duisterethomas.pancakemod.registry.ModBlocks;
 import nl.duisterethomas.pancakemod.registry.ModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class PancakeMod implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+
+		LOGGER.info("Initializing mod blocks");
+		ModBlocks.initialize();
 
 		LOGGER.info("Initializing mod items");
 		ModItems.initialize();

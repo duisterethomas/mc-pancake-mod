@@ -2,7 +2,9 @@ package nl.duisterethomas.pancakemod.items;
 
 import java.util.function.Consumer;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -10,7 +12,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+
+import static nl.duisterethomas.pancakemod.registry.ModBlocks.PANCAKE_STACK;
 
 public class BakedPancakeItem extends Item {
     private final Item rolledVariant;
@@ -76,5 +85,38 @@ public class BakedPancakeItem extends Item {
         }
 
         return InteractionResult.SUCCESS.heldItemTransformedTo(heldStack);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        // Place a new stack if possible
+        BlockPlaceContext placeContext = new BlockPlaceContext(context);
+        if (!placeContext.canPlace()) {
+            return InteractionResult.PASS;
+        }
+
+        BlockState state = PANCAKE_STACK.getStateForPlacement(placeContext);
+        if (state == null) {
+            return InteractionResult.PASS;
+        }
+
+        Level level = context.getLevel();
+        BlockPos pos = placeContext.getClickedPos();
+        Player player = context.getPlayer();
+
+        if (!state.canSurvive(level, pos) || !level.isUnobstructed(state, pos, CollisionContext.placementContext(player))) {
+            return InteractionResult.PASS;
+        }
+
+        if (!level.isClientSide()) {
+            level.setBlockAndUpdate(pos, state);
+
+            SoundType sound = state.getSoundType();
+            level.playSound(null, pos, sound.getPlaceSound(), SoundSource.BLOCKS, (sound.getVolume() + 1.0f) / 2.0f, sound.getPitch() * 0.8f);
+
+            context.getItemInHand().consume(1, player);
+        }
+
+        return InteractionResult.SUCCESS;
     }
 }
