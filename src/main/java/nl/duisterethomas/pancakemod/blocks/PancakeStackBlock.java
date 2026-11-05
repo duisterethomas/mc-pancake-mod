@@ -37,6 +37,11 @@ public class PancakeStackBlock extends Block {
     }
 
     @Override
+    protected VoxelShape getBlockSupportShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return state.getValue(PANCAKE_COUNT) == 16 ? Block.box(0, 15, 0, 16, 16, 16) : Shapes.empty();
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState existing = context.getLevel().getBlockState(context.getClickedPos());
 
@@ -59,7 +64,7 @@ public class PancakeStackBlock extends Block {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolid();
+        return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP);
     }
 
     @Override
