@@ -11,8 +11,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import nl.duisterethomas.pancakemod.registry.ModBlockEntityTypes;
 
 import java.util.ArrayList;
@@ -92,19 +90,20 @@ public class PancakeStackBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(ValueOutput output) {
-        super.saveAdditional(output);
-        output.store("pancakes", ItemStack.CODEC.listOf(), pancakes);
-        output.store("rotations", Codec.INT.listOf(), rotations);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+        nbt.store("pancakes", ItemStack.CODEC.listOf(), pancakes);
+        nbt.store("rotations", Codec.INT.listOf(), rotations);
+
+        super.saveAdditional(nbt, registryLookup);
     }
 
     @Override
-    protected void loadAdditional(ValueInput input) {
-        super.loadAdditional(input);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
+        super.loadAdditional(nbt, registryLookup);
         pancakes.clear();
         rotations.clear();
-        input.read("pancakes", ItemStack.CODEC.listOf()).ifPresent(pancakes::addAll);
-        input.read("rotations", Codec.INT.listOf()).ifPresent(rotations::addAll);
+        nbt.read("pancakes", ItemStack.CODEC.listOf()).ifPresent(pancakes::addAll);
+        nbt.read("rotations", Codec.INT.listOf()).ifPresent(rotations::addAll);
     }
 
     @Override
