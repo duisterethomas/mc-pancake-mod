@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
-import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -49,10 +49,9 @@ public class PancakeStackRenderer
     public void submit(PancakeStackRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState cameraState) {
         for (int i = 0; i < state.pancakes.size(); i++) {
             poseStack.pushPose();
-            // The texture is centered on its origin, 0.5 and the + 1.0 / 32.0 center it on the block
-            poseStack.translate(0.5, i / 16.0 + 1.0 / 32.0, 0.5);
+            // The texture is centered on its origin, 0.5 centers it on the block
+            poseStack.translate(0.5, i / 16.0 + 0.5, 0.5);
             poseStack.mulPose(Axis.YP.rotationDegrees(state.rotations.get(i) * -90));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-90));
             state.pancakes.get(i).submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
             poseStack.popPose();
         }

@@ -1,6 +1,101 @@
 {
-	"parent": "minecraft:item/generated",
 	"textures": {
 		"layer0": "pancakemod:block/stacked_pancake"
-	}
+	},
+	"elements": [
+		{
+			"name": "stacked_pancake",
+			"from": [5, 0, 1],
+			"to": [11, 1, 15],
+			"faces": {
+				"north": {"uv": [11, 1, 5, 2], "texture": "#layer0"},
+				"east": {"uv": [10, 1, 11, 15], "rotation": 90, "texture": "#layer0"},
+				"south": {"uv": [5, 14, 11, 15], "texture": "#layer0"},
+				"west": {"uv": [5, 1, 6, 15], "rotation": 270, "texture": "#layer0"},
+				"up": {"uv": [5, 1, 11, 15], "texture": "#layer0"},
+				"down": {"uv": [5, 15, 11, 1], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [3, 0, 2],
+			"to": [5, 1, 14],
+			"faces": {
+				"north": {"uv": [5, 2, 3, 3], "texture": "#layer0"},
+				"south": {"uv": [3, 13, 5, 14], "texture": "#layer0"},
+				"west": {"uv": [3, 2, 4, 14], "rotation": 270, "texture": "#layer0"},
+				"up": {"uv": [3, 2, 5, 14], "texture": "#layer0"},
+				"down": {"uv": [3, 14, 5, 2], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [11, 0, 2],
+			"to": [13, 1, 14],
+			"faces": {
+				"north": {"uv": [13, 2, 11, 3], "texture": "#layer0"},
+				"east": {"uv": [12, 2, 13, 14], "rotation": 90, "texture": "#layer0"},
+				"south": {"uv": [11, 13, 13, 14], "texture": "#layer0"},
+				"up": {"uv": [11, 2, 13, 14], "texture": "#layer0"},
+				"down": {"uv": [11, 14, 13, 2], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [2, 0, 3],
+			"to": [3, 1, 13],
+			"faces": {
+				"north": {"uv": [3, 3, 2, 4], "texture": "#layer0"},
+				"south": {"uv": [2, 12, 3, 13], "texture": "#layer0"},
+				"west": {"uv": [2, 3, 3, 13], "rotation": 270, "texture": "#layer0"},
+				"up": {"uv": [2, 3, 3, 13], "texture": "#layer0"},
+				"down": {"uv": [2, 13, 3, 3], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [13, 0, 3],
+			"to": [14, 1, 13],
+			"faces": {
+				"north": {"uv": [14, 3, 13, 4], "texture": "#layer0"},
+				"east": {"uv": [13, 3, 14, 13], "rotation": 90, "texture": "#layer0"},
+				"south": {"uv": [13, 12, 14, 13], "texture": "#layer0"},
+				"up": {"uv": [13, 3, 14, 13], "texture": "#layer0"},
+				"down": {"uv": [13, 13, 14, 3], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [1, 0, 5],
+			"to": [2, 1, 11],
+			"faces": {
+				"north": {"uv": [2, 5, 1, 6], "texture": "#layer0"},
+				"south": {"uv": [1, 10, 2, 11], "texture": "#layer0"},
+				"west": {"uv": [1, 5, 2, 11], "rotation": 270, "texture": "#layer0"},
+				"up": {"uv": [1, 5, 2, 11], "texture": "#layer0"},
+				"down": {"uv": [1, 11, 2, 5], "texture": "#layer0"}
+			}
+		},
+		{
+			"name": "stacked_pancake",
+			"from": [14, 0, 5],
+			"to": [15, 1, 11],
+			"faces": {
+				"north": {"uv": [15, 5, 14, 6], "texture": "#layer0"},
+				"east": {"uv": [14, 5, 15, 11], "rotation": 90, "texture": "#layer0"},
+				"south": {"uv": [14, 10, 15, 11], "texture": "#layer0"},
+				"up": {"uv": [14, 5, 15, 11], "texture": "#layer0"},
+				"down": {"uv": [14, 11, 15, 5], "texture": "#layer0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "stacked_pancake",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6]
+		}
+	]
 }
