@@ -1,5 +1,6 @@
 package nl.duisterethomas.pancakemod.blocks;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -19,13 +20,15 @@ import java.util.List;
 
 public class PancakeStackBlockEntity extends BlockEntity {
     private final List<ItemStack> pancakes = new ArrayList<>();
+    private final List<Integer> rotations = new ArrayList<>();
 
     public PancakeStackBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntityTypes.PANCAKE_STACK_ENTITY, pos, state);
     }
 
-    public void addPancake(ItemStack stack) {
+    public void addPancake(ItemStack stack, int rotation) {
         pancakes.add(stack.copyWithCount(1));
+        rotations.add(rotation);
         sync();
     }
 
@@ -35,6 +38,10 @@ public class PancakeStackBlockEntity extends BlockEntity {
         }
 
         ItemStack topPancake = pancakes.removeLast();
+        if (!rotations.isEmpty()) {
+            rotations.removeLast();
+        }
+
         sync();
 
         return topPancake;
@@ -50,6 +57,10 @@ public class PancakeStackBlockEntity extends BlockEntity {
 
     public List<ItemStack> getPancakes() {
         return pancakes;
+    }
+
+    public List<Integer> getRotations() {
+        return rotations;
     }
 
     private void sync() {
@@ -84,13 +95,16 @@ public class PancakeStackBlockEntity extends BlockEntity {
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         output.store("pancakes", ItemStack.CODEC.listOf(), pancakes);
+        output.store("rotations", Codec.INT.listOf(), rotations);
     }
 
     @Override
     protected void loadAdditional(ValueInput input) {
         super.loadAdditional(input);
         pancakes.clear();
+        rotations.clear();
         input.read("pancakes", ItemStack.CODEC.listOf()).ifPresent(pancakes::addAll);
+        input.read("rotations", Codec.INT.listOf()).ifPresent(rotations::addAll);
     }
 
     @Override

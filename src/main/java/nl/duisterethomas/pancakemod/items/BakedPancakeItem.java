@@ -120,7 +120,7 @@ public class BakedPancakeItem extends Item {
             level.setBlockAndUpdate(pos, state);
 
             if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity stack) {
-                stack.addPancake(context.getItemInHand().copyWithCount(1));
+                stack.addPancake(context.getItemInHand().copyWithCount(1), context.getHorizontalDirection().getOpposite().get2DDataValue());
             }
 
             SoundType sound = state.getSoundType();
