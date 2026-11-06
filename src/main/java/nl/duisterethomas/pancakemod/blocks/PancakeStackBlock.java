@@ -141,4 +141,15 @@ public class PancakeStackBlock extends BaseEntityBlock {
 
         return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
     }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+        if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity stack) {
+            ItemStack top = stack.getTopPancake();
+            if (!top.isEmpty()) {
+                return top.copyWithCount(1);
+            }
+        }
+        return ItemStack.EMPTY;
+    }
 }
