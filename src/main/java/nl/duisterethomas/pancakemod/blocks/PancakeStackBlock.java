@@ -1,5 +1,6 @@
 package nl.duisterethomas.pancakemod.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -35,6 +36,11 @@ public class PancakeStackBlock extends BaseEntityBlock {
         super(properties);
 
         registerDefaultState(defaultBlockState().setValue(PANCAKE_COUNT, 1));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return simpleCodec(PancakeStackBlock::new);
     }
 
     @Override

@@ -33,6 +33,6 @@ public class ModBlocks {
         PancakeStackBlock::new,
         BlockBehaviour.Properties.of()
             .sound(SoundType.WOOL)
-            .pushReaction(PushReaction.POPPED)
+            .pushReaction(PushReaction.DESTROY)
     );
 }
