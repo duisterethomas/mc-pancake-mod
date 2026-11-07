@@ -150,7 +150,7 @@ public class PancakeStackBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity stack) {
             ItemStack top = stack.getTopPancake();
             if (!top.isEmpty()) {

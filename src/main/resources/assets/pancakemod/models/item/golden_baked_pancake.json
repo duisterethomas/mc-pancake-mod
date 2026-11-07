@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "pancakemod:item/golden_baked_pancake"
-  }
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "pancakemod:item/golden_baked_pancake"
+    },
+    "overrides": [
+        {
+            "predicate": { "custom_model_data": 1 },
+            "model": "pancakemod:block/golden_stacked_pancake"
+        }
+    ]
 }
