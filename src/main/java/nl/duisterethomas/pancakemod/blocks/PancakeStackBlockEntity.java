@@ -1,13 +1,15 @@
 package nl.duisterethomas.pancakemod.blocks;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DynamicOps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -77,22 +79,11 @@ public class PancakeStackBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
-        super.preRemoveSideEffects(pos, state);
-
-        if (level != null && !level.isClientSide()) {
-            for (ItemStack stack : pancakes) {
-                Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
-            }
-
-            pancakes.clear();
-        }
-    }
-
-    @Override
     protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
-        nbt.store("pancakes", ItemStack.CODEC.listOf(), pancakes);
-        nbt.store("rotations", Codec.INT.listOf(), rotations);
+        DynamicOps<Tag> ops = registryLookup.createSerializationContext(NbtOps.INSTANCE);
+
+        nbt.put("pancakes", ItemStack.CODEC.listOf().encodeStart(ops, pancakes).getOrThrow());
+        nbt.put("rotations", Codec.INT.listOf().encodeStart(ops, rotations).getOrThrow());
 
         super.saveAdditional(nbt, registryLookup);
     }
@@ -100,10 +91,21 @@ public class PancakeStackBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registryLookup) {
         super.loadAdditional(nbt, registryLookup);
+
+        DynamicOps<Tag> ops = registryLookup.createSerializationContext(NbtOps.INSTANCE);
+
         pancakes.clear();
         rotations.clear();
-        nbt.read("pancakes", ItemStack.CODEC.listOf()).ifPresent(pancakes::addAll);
-        nbt.read("rotations", Codec.INT.listOf()).ifPresent(rotations::addAll);
+
+        ItemStack.CODEC.listOf()
+                .parse(ops, nbt.get("pancakes"))
+                .result()
+                .ifPresent(pancakes::addAll);
+
+        Codec.INT.listOf()
+                .parse(ops, nbt.get("rotations"))
+                .result()
+                .ifPresent(rotations::addAll);
     }
 
     @Override

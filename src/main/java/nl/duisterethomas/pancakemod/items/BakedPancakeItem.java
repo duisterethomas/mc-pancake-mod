@@ -100,7 +100,7 @@ public class BakedPancakeItem extends Item {
 
         Level level = context.getLevel();
         BlockPos pos = placeContext.getClickedPos();
-        return state.canSurvive(level, pos) && level.isUnobstructed(state, pos, CollisionContext.placementContext(context.getPlayer()));
+        return state.canSurvive(level, pos) && level.isUnobstructed(state, pos, CollisionContext.of(context.getPlayer()));
     }
 
     @Override

@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -157,5 +158,20 @@ public class PancakeStackBlock extends BaseEntityBlock {
             }
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if (!state.is(newState.getBlock()) && !level.isClientSide) {
+            if (level.getBlockEntity(pos) instanceof PancakeStackBlockEntity blockEntity) {
+                for (ItemStack stack : blockEntity.getPancakes()) {
+                    Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+                }
+
+                blockEntity.getPancakes().clear();
+            }
+        }
+
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 }

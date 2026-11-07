@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.Vec3;
 import nl.duisterethomas.pancakemod.blocks.PancakeStackBlockEntity;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class PancakeStackRenderer implements BlockEntityRenderer<PancakeStackBlo
     }
 
     @Override
-    public void render(PancakeStackBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay, Vec3 cameraPos) {
+    public void render(PancakeStackBlockEntity blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         List<ItemStack> pancakes = blockEntity.getPancakes();
         List<Integer> rotations = blockEntity.getRotations();
 
